@@ -1,0 +1,8 @@
+# Variables de entorno y contraseñas
+.env
+*.env
+
+# Archivos de log y temporales
+*.log
+*.tmp
+*.bak
