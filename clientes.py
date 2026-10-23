@@ -13,6 +13,6 @@ def calcular_interes(saldo, tasa_porcentaje):
 
 if __name__ == "__main__":
     cliente1 = registrar_cliente("CLI-001", "Distribuidora Los Andes", 2500.50)
-    interes = calcular_interes(cliente1["saldo"], 10.0)
+    interes = calcular_interes(cliente1["saldo"], 12.0)
     print(f"Cliente registrado: {cliente1}")
-    print(f"Interés por mora (10%): S/ {interes}")
+    print(f"Interés por mora (12%): S/ {interes}")
