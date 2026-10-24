@@ -1,23 +1,25 @@
 def registrar_cliente(codigo, nombre, saldo=0.0):
-    """Registra un nuevo cliente con su saldo inicial."""
-    return {
-        "codigo": codigo,
-        "nombre": nombre,
-        "saldo": saldo,
-        "activo": True
-    }
+	"""Registra un nuevo cliente con su saldo inicial."""
+	return {
+		"codigo": codigo,
+		"nombre": nombre,
+		"saldo": saldo,
+		"activo": True
+	}
 
 def calcular_interes(saldo, tasa_porcentaje):
-    """Calcula el interés sobre el saldo pendiente."""
-    return round(saldo * (tasa_porcentaje / 100), 2)
+	"""Calcula el interés sobre el saldo pendiente (solo si hay deuda)."""
+	if saldo <= 0:
+		return 0.0
+	return round(saldo * (tasa_porcentaje / 100), 2)
 
 def formatear_moneda(monto):
-    """Devuelve el monto formateado en moneda local."""
-    return f"S/ {monto:,.2f}"
+	"""Devuelve el monto formateado en moneda local."""
+	return f"S/ {monto:,.2f}"
 
 if __name__ == "__main__":
-    cliente1 = registrar_cliente("CLI-001", "Distribuidora Los Andes", 2500.50)
-    interes = calcular_interes(cliente1["saldo"], 12.0)
-    print(f"Cliente registrado: {cliente1['nombre']}")
-    print(f"Saldo actual: {formatear_moneda(cliente1['saldo'])}")
-    print(f"Interés por mora (12%): {formatear_moneda(interes)}")
+	cliente_deudor = registrar_cliente("CLI-001", "Distribuidora Los Andes", 2500.50)
+	cliente_al_dia = registrar_cliente("CLI-002", "Comercial El Sol", 0.0)
+
+	print(f"Cliente 1: {cliente_deudor['nombre']} | Mora: {formatear_moneda(calcular_interes(cliente_deudor['saldo'], 12.0))}")
+	print(f"Cliente 2: {cliente_al_dia['nombre']} | Mora: {formatear_moneda(calcular_interes(cliente_al_dia['saldo'], 12.0))}")
